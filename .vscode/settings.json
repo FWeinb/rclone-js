@@ -1,5 +1,0 @@
-{
-    "editor.formatOnSave": true,
-    "prettier.singleQuote": true,
-    "git.ignoreLimitWarning": true
-}
