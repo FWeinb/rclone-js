@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`dataKey is needed 1`] = `"dataKey must be specified"`;
+
+exports[`fail if decryption is not possible 1`] = `[Error: Could not decrypt data]`;
+
+exports[`fail on wrong magic word 1`] = `[Error: Magic is wrong]`;

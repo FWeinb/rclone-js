@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`provide access to file and path ciphers 1`] = `
+Object {
+  "File": Object {
+    "calculateDecryptedSize": [Function],
+    "createReadStream": [Function],
+    "createReadStreamFactory": [Function],
+  },
+  "Path": Object {
+    "decrypt": [Function],
+    "decryptName": [Function],
+    "encrypt": [Function],
+    "encryptName": [Function],
+  },
+}
+`;
