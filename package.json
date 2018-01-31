@@ -2,20 +2,21 @@
   "name": "rclone",
   "version": "1.0.0",
   "description": "Decrypt filenames in the browser",
-  "main": "dist/rclone.js",
-  "browser": "dist/index.min.js",
+  "main": "dist/index.js",
   "module": "src/index.js",
   "author": "Fabrice Weinberg <fabrice@weinberg.me>",
   "license": "MIT",
-  "files": ["dist"],
+  "files": ["dist", "src", "README.md"],
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-jest": "^22.1.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "codecov": "^3.0.0",
-    "html-webpack-plugin": "^2.30.1",
     "jest": "^22.1.4",
+    "rimraf": "^2.6.2",
+    "npm-run-all": "^4.1.2",
     "stream-chunker": "^1.2.8",
     "stream-equal": "^1.1.0",
     "uglifyjs-webpack-plugin": "^1.1.8",
@@ -32,12 +33,20 @@
     "tweetnacl": "^1.0.0"
   },
   "scripts": {
-    "build": "npm test && NODE_ENV=production webpack --env.production",
+    "prebuild": "rimraf dist",
+    "build": "npm-run-all --parallel build:*",
+    "build:main":
+      "NODE_ENV=production babel --out-dir dist --ignore *.test.js src",
+    "build:umd": "webpack --output-filename rclone.umd.js",
+    "build:umd.min": "webpack -p --output-filename rclone.umd.min.js",
     "test": "jest",
     "dev": "webpack-dev-server"
   },
   "jest": {
     "collectCoverage": true,
     "coverageReporters": ["lcov", "html"]
+  },
+  "babel": {
+    "presets": ["env"]
   }
 }
