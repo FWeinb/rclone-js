@@ -4,8 +4,8 @@ if (typeof module === 'object' && module.exports) {
   decoder = require('ut' + 'il').TextDecoder;
 }
 if (typeof TextDecoder === 'function') {
-  encoder = TextDecoder;
-  decoder = TextEncoder;
+  decoder = TextDecoder;
+  encoder = TextEncoder;
 }
 
 module.exports = {
