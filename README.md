@@ -18,5 +18,5 @@ Pure Javascript implementation of the cipher used in rclone (crypt-mount).
 ### Getting Started
 
 ```
-npm install rclone-js
+npm install rclone
 ```
