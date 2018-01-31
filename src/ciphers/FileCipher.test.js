@@ -1,5 +1,5 @@
 import FileCipher from './FileCipher';
-import { Rclone } from '../Rclone';
+import { Rclone } from '../rclone';
 
 import fs from 'fs';
 import chunker from 'stream-chunker';

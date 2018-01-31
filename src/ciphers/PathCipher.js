@@ -3,7 +3,6 @@ import { default as decodeBase32 } from 'base32-decode';
 import { default as encodeBase32 } from 'base32-encode';
 import { Decrypt, Encrypt } from './eme';
 import { TextDecoder, TextEncoder } from './text-encoding';
-import { encode } from 'punycode';
 
 const { pkcs7 } = padding;
 
