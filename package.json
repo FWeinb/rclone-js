@@ -1,6 +1,6 @@
 {
   "name": "rclone",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "Decrypt filenames in the browser",
   "main": "dist/index.js",
   "module": "src/index.js",
@@ -14,11 +14,15 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "codecov": "^3.0.0",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.1.0",
     "jest": "^22.1.4",
-    "rimraf": "^2.6.2",
     "npm-run-all": "^4.1.2",
+    "rimraf": "^2.6.2",
+    "semantic-release": "^12.4.1",
     "stream-chunker": "^1.2.8",
     "stream-equal": "^1.1.0",
+    "travis-deploy-once": "^4.3.3",
     "uglifyjs-webpack-plugin": "^1.1.8",
     "webpack": "^3.10.0",
     "webpack-bundle-analyzer": "^2.9.2",
@@ -33,6 +37,7 @@
     "tweetnacl": "^1.0.0"
   },
   "scripts": {
+    "commit": "git-cz",
     "prebuild": "rimraf dist",
     "build": "npm-run-all --parallel build:*",
     "build:main":
@@ -40,7 +45,9 @@
     "build:umd": "webpack --output-filename rclone.umd.js",
     "build:umd.min": "webpack -p --output-filename rclone.umd.min.js",
     "test": "jest",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "semantic-release": "semantic-release",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "jest": {
     "collectCoverage": true,
@@ -48,5 +55,12 @@
   },
   "babel": {
     "presets": ["env"]
+  },
+  "czConfig": {
+    "path": "node_modules/cz-conventional-changelog"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FWeinb/rclone-js.git"
   }
 }
