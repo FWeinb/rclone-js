@@ -1,5 +1,4 @@
 // Simple Interface to rclone
-
 import { Rclone as RcloneInternal } from './rclone';
 import FileCipher from './ciphers/FileCipher';
 import PathCipher from './ciphers/PathCipher';
