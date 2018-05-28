@@ -31,6 +31,7 @@
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.9.1",
     "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-command": "^0.2.0",
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {

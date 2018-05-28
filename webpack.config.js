@@ -1,8 +1,9 @@
-const webpack = require('webpack');
-const { join } = require('path');
+const webpack = require('webpack')
+const { join } = require('path')
 
 const config = env => {
   return {
+    mode: 'production',
     entry: './src/index.js',
     output: {
       path: join(__dirname, 'dist'),
@@ -21,7 +22,7 @@ const config = env => {
         }
       ]
     }
-  };
-};
+  }
+}
 
-module.exports = config;
+module.exports = config
