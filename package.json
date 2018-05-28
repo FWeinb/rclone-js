@@ -31,7 +31,7 @@
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.9.1",
     "webpack-bundle-analyzer": "^2.13.1",
-    "webpack-command": "^0.2.0",
+    "webpack-cli": "^2.1.4",
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
@@ -47,9 +47,9 @@
     "prebuild": "rimraf dist",
     "build": "npm-run-all --parallel build:*",
     "build:main": "NODE_ENV=production babel --out-dir dist --ignore *.test.js src",
-    "build:umd": "webpack --output-filename rclone.umd.js",
-    "build:umd.min": "webpack -p --output-filename rclone.umd.min.js",
-    "build:path.umd.min": "webpack -p --entry ./src/ciphers/PathCipher.js --output-library PathCipher --output-filename rclone.pathcipher.min.js",
+    "build:umd": "webpack-cli --output-filename rclone.umd.js",
+    "build:umd.min": "webpack-cli -p --output-filename rclone.umd.min.js",
+    "build:path.umd.min": "webpack-cli -p --entry ./src/ciphers/PathCipher.js --output-library PathCipher --output-filename rclone.pathcipher.min.js",
     "test": "jest",
     "dev": "webpack-dev-server",
     "semantic-release": "semantic-release",
