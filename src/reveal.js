@@ -42,10 +42,16 @@ function base64(s) {
     s += '===='.substr(0, 4 - s.length % 4);
   }
   return new Uint8Array(
-    atob(s)
+    atob2(s)
       .split('')
       .map(charCodeAt)
   );
+}
+
+function atob2(data) {
+  return typeof atob === 'function'
+    ? atob(data)
+    : Buffer.from(data, 'base64').toString('binary');
 }
 
 function charCodeAt(c) {
