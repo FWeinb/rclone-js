@@ -5,6 +5,7 @@ import PathCipher from './ciphers/PathCipher';
 
 export function Rclone(opts) {
   return RcloneInternal(opts).then(keys => ({
+    getKeys: () => keys,
     File: FileCipher(keys),
     Path: PathCipher(keys)
   }));
