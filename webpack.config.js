@@ -1,5 +1,5 @@
-const webpack = require('webpack')
-const { join } = require('path')
+const webpack = require('webpack');
+const { join } = require('path');
 
 const config = env => {
   return {
@@ -17,12 +17,15 @@ const config = env => {
           test: /\.js$/,
           include: [join(__dirname, 'src')],
           use: {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env']
+            }
           }
         }
       ]
     }
-  }
-}
+  };
+};
 
-module.exports = config
+module.exports = config;
