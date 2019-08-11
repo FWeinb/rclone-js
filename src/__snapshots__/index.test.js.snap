@@ -13,5 +13,6 @@ Object {
     "encrypt": [Function],
     "encryptName": [Function],
   },
+  "getKeys": [Function],
 }
 `;
