@@ -5,14 +5,23 @@ cache:
 notifications:
   email: false
 node_js:
-  - '9'
-  - '8'
-script: 
+  - 'node'
+  - 'lts/*'
+script:
   - npm run test
   - npm run build
 after_success:
   - codecov
-  - npm run travis-deploy-once "npm run semantic-release"
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
+jobs:
+  include:
+    - stage: release
+      node_js: lts/*
+      script: skip
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release
