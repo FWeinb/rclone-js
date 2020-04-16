@@ -9,7 +9,8 @@ import {
   fileHeaderSize,
   blockHeaderSize,
   blockDataSize,
-  blockSize
+  blockSize,
+  defaultSalt
 } from './constants';
 
 function Rclone({ password, salt } = {}) {
@@ -50,7 +51,9 @@ export { Rclone };
 // pass and salt are still encrypted with the rclone config encryption
 function generateKeys(encPass, encSalt, callback) {
   const password = reveal(encPass);
-  const salt = reveal(encSalt);
+  const decryptedSalt = reveal(encSalt);
+  const salt = decryptedSalt.length ? decryptedSalt : defaultSalt;
+  
   if (password.length === 0) {
     // Empty key for testing
     callback(
