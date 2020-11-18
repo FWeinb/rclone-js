@@ -24,7 +24,7 @@
     "jest": "^24.8.0",
     "npm-run-all": "^4.1.5",
     "rimraf": "^2.6.3",
-    "semantic-release": "^15.13.19",
+    "semantic-release": "^17.2.3",
     "stream-chunker": "^1.2.8",
     "stream-equal": "^1.1.1",
     "uglifyjs-webpack-plugin": "^2.2.0",
