@@ -31,7 +31,8 @@ import { Rclone } from 'rclone';
 // Create Rclone instance 
 Rclone({
     password: 'UmyLSdRHfew6aual28-ggx78qHqSfQ',
-    salt: 'Cj3gLa5PVwc2aot0QpKiOZ3YEzs3Sw'
+    salt: 'Cj3gLa5PVwc2aot0QpKiOZ3YEzs3Sw',
+    encoding: 'base32' // Path encoding type, default is base32. base32 and base64 only.
 })
 .then(rclone => { 
    

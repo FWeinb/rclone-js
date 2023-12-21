@@ -1,4 +1,5 @@
 import AES from 'aes-js';
+import { decodeBase64 } from './utils/base64'
 const { ctr } = AES.ModeOfOperation;
 
 // prettier-ignore
@@ -21,7 +22,7 @@ function reveal(cipherText) {
   const blockCipher = createCipher();
 
   cipherText = cipherText.replace(/-/g, '+').replace(/_/g, '/');
-  const bytes = base64(cipherText);
+  const bytes = decodeBase64(cipherText);
 
   const iv = bytes.subarray(0, 16);
   const buf = bytes.subarray(16);
@@ -35,25 +36,4 @@ function reveal(cipherText) {
   return ctrCipher.decrypt(buf);
 }
 
-export { reveal };
-
-function base64(s) {
-  if (s.length % 4 != 0) {
-    s += '===='.substr(0, 4 - s.length % 4);
-  }
-  return new Uint8Array(
-    atob2(s)
-      .split('')
-      .map(charCodeAt)
-  );
-}
-
-function atob2(data) {
-  return typeof atob === 'function'
-    ? atob(data)
-    : Buffer.from(data, 'base64').toString('binary');
-}
-
-function charCodeAt(c) {
-  return c.charCodeAt(0);
-}
+export { reveal }

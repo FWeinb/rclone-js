@@ -7,6 +7,6 @@ export function Rclone(opts) {
   return RcloneInternal(opts).then(keys => ({
     getKeys: () => keys,
     File: FileCipher(keys),
-    Path: PathCipher(keys)
+    Path: PathCipher(keys, opts.encoding)
   }));
 }
