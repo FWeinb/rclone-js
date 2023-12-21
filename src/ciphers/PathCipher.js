@@ -1,8 +1,8 @@
 import { AES, padding } from 'aes-js';
-import { default as decodeBase32 } from 'base32-decode';
-import { default as encodeBase32 } from 'base32-encode';
+
 import { Decrypt, Encrypt } from './eme';
 import { TextDecoder, TextEncoder } from './text-encoding';
+import PathEncoding from './path-encoding';
 
 const { pkcs7 } = padding;
 
@@ -16,20 +16,21 @@ const encodeUTF8 = (() => {
   return data => encoder.encode(data);
 })();
 
-export default function PathCipher({ nameKey, nameTweak } = {}) {
+export default function PathCipher({ nameKey, nameTweak } = {}, encodingType = 'base32') {
   if (nameKey === undefined || nameTweak === undefined) {
     throw new Error('nameKey and nameTweak must be specified');
   }
   // Name Cipher Fuctions
   const nameCipher = new AES(nameKey);
+  const pathEncoding = PathEncoding(encodingType)
 
   function encryptName(name) {
     const ciphertext = encodeUTF8(name);
     const paddedCipherText = pkcs7.pad(ciphertext);
     const rawCipherText = Encrypt(nameCipher, nameTweak, paddedCipherText);
 
-    let encodedCipher = encodeBase32(rawCipherText, 'RFC4648-HEX');
-    return encodedCipher.replace(/=+$/, '').toLowerCase();
+    let encodedCipher = pathEncoding.encode(rawCipherText);
+    return encodedCipher.replace(/=+$/, '');
   }
 
   function encrypt(path) {
@@ -40,7 +41,7 @@ export default function PathCipher({ nameKey, nameTweak } = {}) {
   }
   function decryptName(name) {
     const rawCipherText = new Uint8Array(
-      decodeBase32(name.toUpperCase(), 'RFC4648-HEX')
+      pathEncoding.decode(name)
     );
     const paddedPlaintext = Decrypt(nameCipher, nameTweak, rawCipherText);
     return decodeUTF8(pkcs7.strip(paddedPlaintext));

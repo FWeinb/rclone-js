@@ -22,7 +22,8 @@ test('derive keys from password', done => {
 
 test('use default salt when empty', done => {
   // Generated encrypted string with the use of rclone and empty salt
-  const rcloneEncryptedFileName = 'ecrk8fu3e0pk86td3r634nan08';
+  const rcloneEncryptedFileNameBase32 = 'ecrk8fu3e0pk86td3r634nan08';
+  const rcloneEncryptedFileNameBase64 = 'czdEP8NwM0QbrR7MMl1XAg';
   const rcloneDecryptedFileName = 'encrypted_file'
 
    Rclone({
@@ -30,10 +31,14 @@ test('use default salt when empty', done => {
     salt: ''
   })
     .then(rclone => {
-      const pathCipher = PathCipher(rclone);
-      const decryptedString = pathCipher.decrypt(rcloneEncryptedFileName);
-
+      let pathCipher = PathCipher(rclone);
+      let decryptedString = pathCipher.decrypt(rcloneEncryptedFileNameBase32);
       expect(decryptedString).toEqual(rcloneDecryptedFileName);
+
+      pathCipher = PathCipher(rclone, 'base64');
+      decryptedString = pathCipher.decrypt(rcloneEncryptedFileNameBase64);
+      expect(decryptedString).toEqual(rcloneDecryptedFileName);
+
       done();
     })
     .catch(err => done.fail(err));
